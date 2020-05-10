@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konva Test</title>
+
+    <style>
+      #konva div {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+
+  <body>
+    Teste com KonvaJS
+    <div id="konva"></div>
+  </body>
+
+  <script src="https://unpkg.com/konva@4.0.0/konva.min.js"></script>
+  <script>
+    const stage = new Konva.Stage({
+      container: 'konva',
+      width: 500,
+      height: 500
+    })
+
+    const layer = new Konva.Layer()
+    stage.add(layer)
+
+    // Desenha uma imagem
+    let bonecoImg = new Image()
+    bonecoImg.src = './img.png'
+    let boneco = new Konva.Image({
+      x: 10,
+      y: 10,
+      image: bonecoImg,
+      width: 32,
+      height: 48,
+    })
+    layer.add(boneco)
+
+    // Desenha um retângulo
+    var rect = new Konva.Rect({
+      x: 50,
+      y: 120,
+      width: 100,
+      height: 100,
+      fill: 'blue',
+      cornerRadius: [10, 10, 0, 0],
+    })
+    layer.add(rect)
+
+    // Desenha um texto
+    var texto = new Konva.Text({
+      x: 80,
+      y: 60,
+      text: "Este texto pode ser arrastado, Konva é top.",
+      fontSize: 18,
+      fontFamily: 'Arial',
+      fill: 'red',
+      width: 300,
+      padding: 20,
+      align: 'justify',
+      draggable: true,
+    })
+    layer.add(texto)
+
+    // Função que efetivamente desenha as formas no canvas
+    bonecoImg.onload = () => layer.draw() // Quando a imagem do boneco carregar, a função é executada
+  </script>
+</html>
